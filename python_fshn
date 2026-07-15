@@ -1,0 +1,80 @@
+import numpy as np 
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10,4))
+# make F#
+
+
+y = np.linspace(0, 4, 200)
+plt.plot(np.full_like(y, 0.5), y, "b")
+
+x = np.linspace(0.5, 3, 200)
+plt.plot(x, np.full_like(x, 4), "b")
+
+x = np.linspace(0.5, 3, 200)
+plt.plot(x, np.full_like(x, 2.5), "b")
+
+
+# make S ##
+
+
+#upper semicircle
+theta = np.linspace(np.pi/2, 3*np.pi/2, 200)
+x = 4.5 + np.cos(theta)
+y = 3 + np.sin(theta)
+plt.plot(x, y, "y")
+
+#lower semicircle
+theta = np.linspace(-np.pi/2, np.pi/2, 200)
+x = 4.5 + np.cos(theta)
+y = 1 + np.sin(theta)
+plt.plot(x, y, "y")
+
+#top left  S 
+theta = np.linspace(0, np.pi, 200)
+x = 4.5 - np.cos(theta)
+y = 3 + np.sin(theta)
+plt.plot(x, y, "y")
+
+#bottom right  S
+theta = np.linspace(np.pi, 2*np.pi, 200)
+x = 4.5 + np.cos(theta)
+y = 1 + np.sin(theta)
+plt.plot(x, y, "y")
+
+# make H ##
+
+
+y = np.linspace(0,4,200)
+plt.plot(np.full_like(y,6), y, "r")
+plt.plot(np.full_like(y,8.5), y, "r")
+
+x = np.linspace(6, 8.5, 200)
+plt.plot(x, np.full_like(x, 2), "r")
+
+
+# make N #
+
+
+y = np.linspace(0, 4, 200)
+plt.plot(np.full_like(y, 9.5), y, "g")
+plt.plot(np.full_like(y, 12), y, "g")
+
+x = np.linspace(9.5, 12, 200)
+y = -1.6*x + 19.2
+plt.plot(x, y, "g")
+
+
+##format
+
+
+plt.xlim(0,13)
+plt.ylim(-0.5,4.5)
+
+plt.xlabel("x")
+plt.ylabel("y")
+plt.title("Fakulteti i Shkencave Natyrore")
+
+plt.savefig("/Users/eduan/work/git_work/python_works/FSHN.pdf")
+
+plt.show
