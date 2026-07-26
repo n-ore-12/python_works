@@ -10,7 +10,7 @@ load()
 with open("/usr/share/dict/words") as f:
     dictionary = set(word.strip().lower() for word in f)
 
-character_count = 100000
+character_count = 10000
 command = f"LC_CTYPE=C tr -dc 'a-z' < /dev/urandom | head -c {character_count}"
 
 result = subprocess.run(command, shell=True, capture_output=True, text=True)
@@ -28,12 +28,13 @@ longest_word = max(real_words, key=len)
 longest_word_len = len(longest_word)
 word_count = len(real_words)
 
+
 print("Loaded!")
 
-time.sleep(1.5)
+time.sleep(1)
 
 print()
-print(f"Dictionary words found:")
+print(f"{word_count} words were found:")
 print()
 print(real_words)
 print()
@@ -42,4 +43,4 @@ print(f"Longest word: '{longest_word}', at {longest_word_len} characters.")
 end_time = time.perf_counter()
 
 time_passed = (end_time - start_time) - 1.5
-print(f"Finding these words took approximately {time_passed:.2f} seconds.")
+print(f"Finding these words took approximately {time_passed:.6f} seconds.")

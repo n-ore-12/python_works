@@ -1,0 +1,84 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# =====================================================
+# PARAMETERS
+# =====================================================
+
+# Radii
+r1 = 1.0
+r2 = 1.0
+
+# Center of first circle
+x0 = 0.0
+y0 = 0.0
+
+# Angle where the two arcs meet (degrees)
+junction = 270
+
+# Arc lengths (degrees)
+arc1 = 240      # first arc
+arc2 = 240      # second arc
+
+resolution = 300
+
+# =====================================================
+# Convert to radians
+# =====================================================
+
+junction = np.deg2rad(junction)
+arc1 = np.deg2rad(arc1)
+arc2 = np.deg2rad(arc2)
+
+# =====================================================
+# First arc
+# =====================================================
+
+start1 = junction - arc1
+
+theta1 = np.linspace(start1, junction, resolution)
+
+x1 = x0 + r1*np.cos(theta1)
+y1 = y0 + r1*np.sin(theta1)
+
+# =====================================================
+# Junction point
+# =====================================================
+
+Px = x0 + r1*np.cos(junction)
+Py = y0 + r1*np.sin(junction)
+
+# =====================================================
+# Second circle center
+# =====================================================
+
+x02 = Px - r2*np.cos(junction)
+y02 = Py - r2*np.sin(junction)
+
+# =====================================================
+# Second arc
+# =====================================================
+
+start2 = np.arctan2(Py - y02, Px - x02)
+end2 = start2 - arc2
+
+theta2 = np.linspace(start2, end2, resolution)
+
+x2 = x02 + r2*np.cos(theta2)
+y2 = y02 + r2*np.sin(theta2)
+
+# =====================================================
+# Plot
+# =====================================================
+
+fig, ax = plt.subplots(figsize=(6,6))
+
+ax.plot(x1, y1, "k", lw=2)
+ax.plot(x2, y2, "k", lw=2)
+
+ax.set_aspect("equal")
+ax.grid(True)
+
+plt.savefig("/Users/eduan/work/git_work/python_works/python_s.pdf")
+
+plt.show()

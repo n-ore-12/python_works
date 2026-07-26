@@ -1,5 +1,6 @@
 import random
 import time
+import matplotlib.pyplot as plt
 
 statistics = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
 trials = 100
@@ -22,3 +23,12 @@ print(f"Statistics of a 6-sided die after {trials} rolls")
 print(statistics)
 print(f"Average Roll: {average_roll}")
 
+plt.bar(statistics.keys(), statistics.values(), color = "b")
+mu = chr(956)
+
+plt.title(f"Statistics of a 6-sided die after {trials} rolls - {mu}: {average_roll}")
+plt.xlabel("Face")
+plt.ylabel("Rolls")
+plt.axvline(x=average_roll,linewidth=2, linestyle ="dashed", color="r", label= "Average Roll")
+plt.legend()
+plt.show()
