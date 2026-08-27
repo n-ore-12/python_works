@@ -39,11 +39,10 @@ def sphere_f(R, n):
 
     ax = fig.add_subplot(111,projection = '3d')
 
-    ax.scatter(
+    ax.plot_surface(
         X[sphere], 
         Y[sphere], 
-        Z[sphere], 
-        s=1
+        Z[sphere]
     )
     ax.set_box_aspect([1, 1, 1])
     ax.set_title(f"Minimum value: {result_min}, Maximum value: {result_max} \n for sphere with r = 1")
