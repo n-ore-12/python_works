@@ -2,24 +2,16 @@ import numpy as np
 
 userinput = input("Please input a polynomial function, like x**2 + 3*x - 2: ")
 
+roots = []
+
 def user_function(v):
     str_replaced_function = userinput.replace('x', 'v')
     int_replaced_function = eval(str_replaced_function)
-    return (int_replaced_function)
-
-a = -10
-p = 0.1
-b = a + p
+    for r in roots:
+        int_replaced_function /= (v - r)
+    return int_replaced_function
 
 
-while user_function(a) * user_function(b) >= 0:
-    p += 0.1
-    b = a + p
-
-c = (a + b) / 2
-user_function(c)
-
-    
 def bisection(a, b):
     t = 6
     tolerance = 5 * 10**(-t)
@@ -39,5 +31,20 @@ def bisection(a, b):
     return c
 
 
-findroot = bisection(a,b)
-print(findroot)
+while True:
+    a = -10
+    p = 0.1
+    b = a + p
+
+    while user_function(a) * user_function(b) >= 0:
+        p += 0.1
+        b = a + p
+        if b > 10:   
+            break
+    if b > 10:
+        break          
+    findroot = bisection(a, b)
+    roots.append(findroot)
+    print(findroot)
+
+print("All roots found:", roots)
